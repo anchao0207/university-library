@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Bebas_Neue, IBM_Plex_Sans } from "next/font/google";
+import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
 
 // const geistSans = Geist({
@@ -40,6 +41,7 @@ export default function RootLayout({
         className={`${ibmPlexSans.variable} ${bebasNeue.variable} antialiased`}
       >
         {children}
+        <Toaster richColors />
       </body>
     </html>
   );
