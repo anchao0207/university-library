@@ -37,14 +37,18 @@ const ImageUpload = ({
   onFileChange: (filePath: string) => void;
 }) => {
   const ikUploadRef = useRef(null);
-  const [file, setFile] = useState<{ filePath: string | null }>(null);
+  const [file, setFile] = useState<{ filePath: string | null }>({
+    filePath: null,
+  });
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onError = (error: any) => {
     console.error(error);
     toast.error("Image uploaded failed.", {
       description: "Your image could not be uploaded. Please try again.",
     });
   };
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onSuccess = (res: any) => {
     setFile(res);
     onFileChange(res.filePath);
@@ -72,7 +76,7 @@ const ImageUpload = ({
         onClick={(e) => {
           e.preventDefault();
           if (ikUploadRef.current) {
-            ikUploadRef.current.click();
+            (ikUploadRef.current as HTMLElement).click();
           }
         }}
       >
@@ -87,7 +91,7 @@ const ImageUpload = ({
         {file && <p className="upload-filename">{file.filePath}</p>}
       </button>
 
-      {file && (
+      {file?.filePath && (
         <IKImage
           alt={file.filePath}
           path={file.filePath}
