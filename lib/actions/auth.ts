@@ -15,7 +15,7 @@ export const signInWithCredentials = async (
   const { email, password } = params;
 
   try {
-    const result = await signIn("credentials", {
+    const result: { error: unknown } = await signIn("credentials", {
       email,
       password,
       redicrect: false,
