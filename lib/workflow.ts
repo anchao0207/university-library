@@ -30,9 +30,7 @@ export const sendEmail = ({
         email: email,
         newUser: newUser,
       },
-      {
-        publicKey: config.env.emailjs.publicKey,
-      }
+      config.env.emailjs.publicKey
     )
     .then(
       (response) => {
