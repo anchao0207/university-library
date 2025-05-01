@@ -37,11 +37,12 @@ const getUserState = async (email: string): Promise<UserState> => {
 export const { POST } = serve<InitialData>(async (context) => {
   const { email, fullName } = context.requestPayload;
 
-  await context.run("new-signup", async () => {
-    await sendEmail({
+  await context.run("new-signup", () => {
+    sendEmail({
       email,
-      subject: "Welcome to our platform",
-      message: `Welcome ${fullName}`,
+      name: fullName,
+      newUser: true,
+      templateId: "template_eqca9ve",
     });
   });
 
@@ -54,18 +55,19 @@ export const { POST } = serve<InitialData>(async (context) => {
 
     if (state === "non-active") {
       await context.run("send-email-non-active", async () => {
-        await sendEmail({
+        sendEmail({
           email,
-          subject: "Are you still here?",
-          message: `Hi ${fullName}, we miss you!`,
+          name: fullName,
+          templateId: "template_eqca9ve",
         });
       });
     } else if (state === "active") {
-      await context.run("send-email-active", async () => {
-        await sendEmail({
+      await context.run("send-email-active", () => {
+        sendEmail({
           email,
-          subject: "Welcome back!",
-          message: `Welcome back ${fullName}`,
+          name: fullName,
+          newUser: false,
+          templateId: "template_3kbfeio",
         });
       });
 
