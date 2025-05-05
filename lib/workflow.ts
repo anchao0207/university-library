@@ -1,5 +1,5 @@
 import { Client as WorkflowClient } from "@upstash/workflow";
-import { Client as QStashClient, resend } from "@upstash/qstash";
+import { Client as QStashClient } from "@upstash/qstash";
 // import emailjs from "@emailjs/browser";
 import config from "./config";
 
@@ -51,11 +51,11 @@ export const sendEmail = async ({
       template_id: templateId,
       user_id: config.env.emailjs.publicKey,
       template_params: {
-        name,
-        email,
-        newUser,
+        name: name,
+        email: email,
+        newUser: newUser,
       },
-      access_token: config.env.emailjs.privateKey,
+      accessToken: config.env.emailjs.privateKey,
     },
   });
 };
