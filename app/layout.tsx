@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Bebas_Neue, IBM_Plex_Sans } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner";
 import { SessionProvider } from "next-auth/react";
-import "./globals.css";
+import "@/app/globals.css";
 import { auth } from "@/auth";
 
 // const geistSans = Geist({
